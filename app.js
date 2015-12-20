@@ -1,16 +1,17 @@
+// express variables and middleware
 var express    = require('express'),
   path         = require('path'),
   favicon      = require('static-favicon'),
   logger       = require('morgan'),
   cookieParser = require('cookie-parser'),
-  bodyParser   = require('body-parser');
+  bodyParser   = require('body-parser'),
+  app          = express();
 
+// routes
 var routes = require('./routes/index'),
   users    = require('./routes/users');
 
 var mongoose = require('mongoose');
-
-var app = express();
 
 mongoose.connect('mongodb://localhost/api', function (error) {
   if (error) {
