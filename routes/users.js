@@ -4,7 +4,7 @@ var express = require('express'),
 var mongoose = require('mongoose'),
   User       = require('../models/user.js');
 
-// get users
+// get all users
 router.get('/', function(request, response, next) {
   User.find(function(error, users){
     if (error) {
@@ -17,6 +17,16 @@ router.get('/', function(request, response, next) {
 // create a user
 router.post('/', function(request, response, next) {
   User.create(request.body, function(error, post) {
+    if (error) {
+      return next(error);
+    }
+    response.json(post);
+  });
+});
+
+// get a specific user
+router.get('/:id', function(request, response, next) {
+  User.findById(request.params.id, function(error, post) {
     if (error) {
       return next(error);
     }
