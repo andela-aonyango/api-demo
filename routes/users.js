@@ -34,4 +34,14 @@ router.get('/:id', function(request, response, next) {
   });
 });
 
+// update a user
+router.put('/:id', function(request, response, next) {
+  User.findByIdAndUpdate(request.params.id, request.body, function(error, post) {
+      if (error) {
+        return next(error);
+      }
+      response.json(post);
+  });
+});
+
 module.exports = router;
