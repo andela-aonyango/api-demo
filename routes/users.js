@@ -1,8 +1,7 @@
 var express = require('express'),
   router    = express.Router();
 
-var mongoose = require('mongoose'),
-  User       = require('../models/user.js');
+var User = require('../models/user.js');
 
 // get all users
 router.get('/', function(request, response, next) {
