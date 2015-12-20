@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
-  firstName  : String,
-  lastName   : String,
-  age        : Number,
-  updated_on : { type: Date, default: Date.now }
+  firstName  : { type: String, required: true },
+  lastName   : { type: String, required: true },
+  age        : { type: Number, required: false },
+  updated_on : { type: Date, default: Date() }
 });
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('user', UserSchema)
