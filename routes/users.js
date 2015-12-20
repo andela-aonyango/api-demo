@@ -24,7 +24,7 @@ router.post('/', function(request, response, next) {
   });
 });
 
-// get a specific user
+// get a user
 router.get('/:id', function(request, response, next) {
   User.findById(request.params.id, function(error, post) {
     if (error) {
@@ -36,12 +36,24 @@ router.get('/:id', function(request, response, next) {
 
 // update a user
 router.put('/:id', function(request, response, next) {
-  User.findByIdAndUpdate(request.params.id, request.body, function(error, post) {
+  User.findByIdAndUpdate(
+    request.params.id, request.body, function(error, post) {
       if (error) {
         return next(error);
       }
       response.json(post);
   });
+});
+
+// delete a user
+router.delete('/:id', function(request, response, next) {
+  User.findByIdAndRemove(
+    request.params.id, request.body, function(error, post){
+      if (error) {
+        return next(error);
+      }
+      response.json(post);
+    });
 });
 
 module.exports = router;
