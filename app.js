@@ -11,9 +11,11 @@ var express    = require('express'),
 var routes = require('./routes/index'),
   users    = require('./routes/users');
 
-var mongoose = require('mongoose');
+var mongoose        = require('mongoose'),
+  connection_string = process.env.MONGOLAB_URI || 'mongodb://localhost/api';
 
-mongoose.connect('mongodb://localhost/api', function (error) {
+
+mongoose.connect(connection_string, function (error) {
   if (error) {
     console.log('connection error: ', error);
   } else {
